@@ -1,0 +1,48 @@
+﻿@model TimeTrace.Models.ProjectModel
+
+@{
+    ViewBag.Title = "Assign";
+}
+
+<h2>Assign workers for @Model.Name</h2>
+<br/>
+<div class="input-group">
+    <form asp-action="Assign">
+        <input type="hidden" asp-for="Id" />
+        <div class="input-group">
+            <input asp-for="UsernameToAdd" class="form-control" placeholder="Email for user to add"/>
+            <span asp-validation-for="UsernameToAdd" class="text-danger"></span>
+            <input type="submit" value="Add user" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+<br/>
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            Email
+        </div>
+        <div class="col-sm">
+            Username
+        </div>
+        <div class="col-sm">
+            Name
+        </div>
+    </div>
+    
+@{
+    if (Model.ApplicationUsers != null)
+    {
+        foreach (var u in Model.ApplicationUsers)
+        {
+            <div class="row">
+                <div class="col-sm">@u.Email</div>
+                <div class="col-sm">@u.UserName</div>
+                <div class="col-sm">@u.firstname @u.lastname</div>
+            </div>
+        }
+    }
+}
+</div>
+  
+

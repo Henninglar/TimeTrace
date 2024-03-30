@@ -1,0 +1,24 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+  
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="text-center">
+    <h1 class="display-4">Welcome to TimeTrace, @UserManager.GetUserAsync(User).Result.firstname!</h1>
+                                                                                                </div>
+}
+else
+{
+
+    <div class="text-center">
+    <h1 class="display-4">Welcome to TimeTrace</h1>
+    <p>Please sign in to access features.</p>
+    </div>
+}
